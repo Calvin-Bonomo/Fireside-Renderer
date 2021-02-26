@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\</FILEPATH>
+      <FILENAME>Renderer.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>22</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'fireside::Renderer2D::m_WindowHeight' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>fireside::Renderer2D::{ctor}</FUNCTION>
+    <DECORATED>??0Renderer2D@fireside@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>fireside::Renderer2D::m_WindowHeight</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\</FILEPATH>
+      <FILENAME>Renderer.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>22</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'fireside::Renderer2D::m_WindowWidth' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>fireside::Renderer2D::{ctor}</FUNCTION>
+    <DECORATED>??0Renderer2D@fireside@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>fireside::Renderer2D::m_WindowWidth</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\</FILEPATH>
+      <FILENAME>Renderer.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>22</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'fireside::Renderer2D::m_Window' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>fireside::Renderer2D::{ctor}</FUNCTION>
+    <DECORATED>??0Renderer2D@fireside@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>fireside::Renderer2D::m_Window</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
