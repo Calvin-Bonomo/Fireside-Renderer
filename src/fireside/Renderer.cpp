@@ -2,11 +2,6 @@
 
 #include <iostream>
 
-fireside::Renderer2D::Renderer2D()
-{
-
-}
-
 fireside::Renderer2D::~Renderer2D()
 {
 	glfwTerminate();
@@ -56,4 +51,21 @@ void fireside::Renderer2D::Start(fireside::Application* app)
 		// Poll for and process events
 		glfwPollEvents();
 	}
+}
+
+void fireside::Renderer2D::doRenderCall(fireside::RenderCall call, glm::mat4x4& camMat) 
+{
+	auto temp_va = call.vertexArray.lock();
+	auto temp_eab = call.elementBuffer.lock();
+	auto temp_material = call.material.lock();
+	
+	temp_va->Bind();
+	temp_eab->Bind();
+	temp_material->Bind();
+	
+	glDrawElements(GL_TRIANGLES, temp_eab->getLength(), temp_eab->getType(), nullptr);
+
+	temp_material->Unbind();
+	temp_eab->Unbind();
+	temp_va->Unbind();
 }

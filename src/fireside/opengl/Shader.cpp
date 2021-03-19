@@ -30,22 +30,6 @@ void fireside::Shader::Unbind()
 	glUseProgram(0);
 }
 
-void fireside::Shader::setUniform1f(const char* uniform, const GLfloat value) {
-	GLint loc = GetUniformLocation(uniform);
-	if (loc != -1) 
-		glUniform1f(loc, value);
-	else 
-		std::cerr << "Could not find uniform " << uniform << "." << std::endl;
-}
-
-void fireside::Shader::setUniform4fv(const char* uniform, const glm::vec4 value) {
-	GLint loc = GetUniformLocation(uniform);
-	if (loc != -1)
-		glUniform4fv(loc, 1, glm::value_ptr(value));
-	else
-		std::cerr << "Could not find uniform " << uniform << "." << std::endl;
-}
-
 unsigned long fireside::Shader::GetFileLength(std::ifstream& file) 
 {
 	// Check stream state
@@ -110,4 +94,18 @@ GLuint fireside::Shader::CreateShader(GLenum shaderType, const char* shaderFileP
 	}
 
 	return id;
+}
+
+GLint fireside::Shader::GetUniformLocation(std::string uniform) 
+{
+	if (m_UniformLocations.find(uniform) != m_UniformLocations.end())
+		return m_UniformLocations[uniform];
+
+	int location = glGetUniformLocation(m_RendererID, uniform.c_str());
+	if (location != -1) {
+		m_UniformLocations.insert({ uniform, location });
+		return location;
+	}
+	else 
+		std::cerr << "Could not find uniform " << uniform << "." << std::endl;
 }

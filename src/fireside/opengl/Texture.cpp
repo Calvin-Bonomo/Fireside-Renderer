@@ -30,8 +30,7 @@ void fireside::Texture::CreateTexture(const char* path)
 	int width, height, nrChannels;
 	unsigned char* imageData = stbi_load(path, &width, &height, &nrChannels, 0);
 
-	if (imageData)
-	{
+	if (imageData) {
 		std::cout << "Loaded image " << path << std::endl;
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

@@ -4,7 +4,7 @@ fireside::VertexBuffer::VertexBuffer(const void* data, GLsizeiptr size)
 {
 	glGenBuffers(1, &m_RendererID);
 	Bind();
-	glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
 	Unbind();
 }
 

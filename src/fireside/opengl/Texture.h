@@ -8,7 +8,8 @@
 #include <sstream>
 
 namespace fireside {
-	class Texture {
+	class Texture 
+	{
 	public:
 		Texture();
 		~Texture();

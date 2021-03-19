@@ -8,9 +8,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
 
 namespace fireside {
-
 	class Shader 
 	{
 	public:
@@ -20,16 +22,17 @@ namespace fireside {
 		void Bind();
 		void Unbind();
 
-		void setUniform1f(const char* uniform, const GLfloat value);
-		void setUniform4fv(const char* uniform, const glm::vec4 value);
+		void SetUniform1f(std::string uniform, const GLfloat value) { glUniform1f(GetUniformLocation(uniform), value); }
+		void SetUniform4fv(std::string uniform, const glm::vec4 value) { glUniform4fv(GetUniformLocation(uniform), 1, glm::value_ptr(value)); }
 	private:
 		unsigned long GetFileLength(std::ifstream& fileStream);
 		std::string ReadFile(const char* filePath);
 
 		GLuint CreateShader(GLenum shaderType, const char* shaderSource);
 
-		inline GLint GetUniformLocation(const char* uniform) { return glGetUniformLocation(m_RendererID, uniform); }
+		inline GLint GetUniformLocation(std::string uniform);
 	private:
 		GLuint m_RendererID;
+		std::unordered_map<std::string, GLint> m_UniformLocations;
 	};
 }

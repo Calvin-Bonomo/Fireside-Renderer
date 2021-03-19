@@ -19,15 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ElementArrayBuffer.h" />
-    <ClInclude Include="src\Primitive.h" />
-    <ClInclude Include="src\Primitives.h" />
-    <ClInclude Include="src\Renderer.h" />
-    <ClInclude Include="src\Shader.h" />
-    <ClInclude Include="src\Texture.h" />
-    <ClInclude Include="src\VertexArray.h" />
-    <ClInclude Include="src\VertexBuffer.h" />
-    <ClInclude Include="src\VertexLayout.h" />
+    <ClInclude Include="src\fireside\Material.h" />
+    <ClInclude Include="src\fireside\opengl\ElementArrayBuffer.h" />
+    <ClInclude Include="src\fireside\Renderer.h" />
+    <ClInclude Include="src\fireside\opengl\Shader.h" />
+    <ClInclude Include="src\fireside\opengl\Texture.h" />
+    <ClInclude Include="src\fireside\opengl\VertexArray.h" />
+    <ClInclude Include="src\fireside\opengl\VertexBuffer.h" />
+    <ClInclude Include="src\fireside\opengl\VertexLayout.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\compute_vector_relational.hpp" />
@@ -313,18 +312,21 @@
     <ClInclude Include="vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ElementArrayBuffer.cpp" />
+    <ClCompile Include="src\fireside\Material.cpp" />
+    <ClCompile Include="src\fireside\opengl\ElementArrayBuffer.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Renderer.cpp" />
-    <ClCompile Include="src\Shader.cpp" />
-    <ClCompile Include="src\Texture.cpp" />
-    <ClCompile Include="src\VertexArray.cpp" />
-    <ClCompile Include="src\VertexBuffer.cpp" />
+    <ClCompile Include="src\fireside\Renderer.cpp" />
+    <ClCompile Include="src\fireside\opengl\Shader.cpp" />
+    <ClCompile Include="src\fireside\opengl\Texture.cpp" />
+    <ClCompile Include="src\fireside\opengl\VertexArray.cpp" />
+    <ClCompile Include="src\fireside\opengl\VertexBuffer.cpp" />
     <ClCompile Include="vendor\glm\glm\detail\glm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\matte_color_fragment.shader" />
-    <None Include="res\shaders\matte_color_vertex.shader" />
+    <None Include="res\shaders\matte-color-basic\matte-color_fragment.shader" />
+    <None Include="res\shaders\matte-color-basic\matte-color_vertex.shader" />
+    <None Include="res\shaders\texture-basic\texture_fragment.shader" />
+    <None Include="res\shaders\texture-basic\texture_vertex.shader" />
     <None Include="vendor\glm\glm\detail\func_common.inl" />
     <None Include="vendor\glm\glm\detail\func_common_simd.inl" />
     <None Include="vendor\glm\glm\detail\func_exponential.inl" />
@@ -535,7 +537,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Fireside Renderer\vendor\stb;$(SolutionDir)Fireside Renderer\vendor\glm;$(SolutionDir)Dependecies\GLFW\include;$(SolutionDir)Dependecies\GLEW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Fireside Renderer\src\fireside\opengl;$(SolutionDir)Fireside Renderer\vendor\stb;$(SolutionDir)Fireside Renderer\vendor\glm;$(SolutionDir)Dependecies\GLFW\include;$(SolutionDir)Dependecies\GLEW\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -553,7 +555,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Fireside Renderer\vendor\stb;$(SolutionDir)Fireside Renderer\vendor\glm;$(SolutionDir)Dependecies\GLFW\include;$(SolutionDir)Dependecies\GLEW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Fireside Renderer\src\fireside\opengl;$(SolutionDir)Fireside Renderer\vendor\stb;$(SolutionDir)Fireside Renderer\vendor\glm;$(SolutionDir)Dependecies\GLFW\include;$(SolutionDir)Dependecies\GLEW\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
