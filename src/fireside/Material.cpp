@@ -1,33 +1,39 @@
 #include "Material.h"
 
-fireside::Material::Material()
-{
-	m_Shader = nullptr;
-	m_Texture = nullptr;
-}
-
-fireside::Material::Material(std::shared_ptr<Shader>& shader)
+fireside::Material::Material(Shader* shader)
 {
 	m_Shader = shader;
-	m_Texture = nullptr;
 }
 
-fireside::Material::Material(std::shared_ptr<Shader>& shader, std::shared_ptr<Texture>& texture)
+fireside::Material::~Material() 
 {
-	m_Shader = shader;
-	m_Texture = texture;
+	delete m_Shader;
 }
 
 void fireside::Material::Bind() 
 {
 	if (m_Shader != nullptr) m_Shader->Bind();
-	if (m_Texture != nullptr) m_Texture->Bind();
+	for (Uniform u : m_UniformList) 
+	{
+		if (u.type == u_Tex2D) 
+		{
+			Texture& tex = *(Texture*)u.value;
+			tex.Bind();
+		}
+	}
 }
 
 void fireside::Material::Unbind()
 {
+	for (Uniform u : m_UniformList)
+	{
+		if (u.type == u_Tex2D)
+		{
+			Texture& tex = *(Texture*)u.value;
+			tex.Unbind();
+		}
+	}
 	if (m_Shader != nullptr) m_Shader->Unbind();
-	if (m_Texture != nullptr) m_Texture->Unbind();
 }
 
 void fireside::Material::SetShaderUniform(Uniform uniform) 

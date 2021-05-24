@@ -63,7 +63,7 @@ void fireside::Renderer2D::doRenderCall(fireside::RenderCall call, glm::mat4x4& 
 	temp_eab->Bind();
 	temp_material->Bind();
 	
-	glDrawElements(GL_TRIANGLES, temp_eab->getLength(), temp_eab->getType(), nullptr);
+	glDrawElements(GL_TRIANGLES, temp_eab->GetLength(), temp_eab->GetType(), nullptr);
 
 	temp_material->Unbind();
 	temp_eab->Unbind();

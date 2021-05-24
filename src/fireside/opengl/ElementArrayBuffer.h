@@ -13,8 +13,8 @@ namespace fireside { // TODO: Add template specialization for unsigned int and u
 		void Bind();
 		void Unbind();
 
-		const GLenum getType() { return m_ElementType; }
-		const unsigned int getLength() { return m_ElementBufferLength; }
+		const GLenum GetType() { return m_ElementType; }
+		const unsigned int GetLength() { return m_ElementBufferLength; }
 	private:
 		GLuint m_RendererID;
 		GLenum m_ElementType;

@@ -9,5 +9,5 @@ out vec4 Pcolor;
 void main()
 {
 	gl_Position = position;
-	Pcolor = vec4(1.0, 0.0, 0.0, 1.0);
+	Pcolor = u_color;
 };

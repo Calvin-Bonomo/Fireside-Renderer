@@ -96,6 +96,10 @@ GLuint fireside::Shader::CreateShader(GLenum shaderType, const char* shaderFileP
 	return id;
 }
 
+void fireside::Shader::SetUniform1f(std::string uniform, const GLfloat value) { glUniform1f(GetUniformLocation(uniform), value); }
+
+void fireside::Shader::SetUniform4fv(std::string uniform, const glm::vec4 value) { glUniform4fv(GetUniformLocation(uniform), 1, glm::value_ptr(value)); }
+
 GLint fireside::Shader::GetUniformLocation(std::string uniform) 
 {
 	if (m_UniformLocations.find(uniform) != m_UniformLocations.end())

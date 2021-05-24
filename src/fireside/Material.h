@@ -15,6 +15,7 @@
 #define u_Vec3 3
 #define u_Vec4 4
 #define u_Mat4x4 5
+#define u_Tex2D 6
 
 namespace fireside {
 	struct Uniform {
@@ -26,9 +27,7 @@ namespace fireside {
 	class Material 
 	{
 	public:
-		Material();
 		Material(Shader* shader);
-		Material(Shader* shader, Texture* texture);
 
 		~Material();
 
@@ -40,8 +39,7 @@ namespace fireside {
 		void SetShaderUniform(Uniform uniform);
 
 	private:
-		Shader m_Shader;
-		Texture m_Texture;
+		Shader* m_Shader;
 		std::vector<Uniform> m_UniformList;
 	};
 }

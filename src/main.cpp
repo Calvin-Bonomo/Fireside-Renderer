@@ -7,17 +7,19 @@ public:
 	std::shared_ptr<fireside::VertexBuffer> vbo;
 	std::shared_ptr<fireside::ElementArrayBuffer> eab;
 	std::shared_ptr<fireside::Material> material;
+	fireside::Shader *shader;
 
 	App() 
 	{
 		fireside::Renderer2D renderer;
 		renderer.InitRenderer(400, 400, "Test");
-		fireside::Shader shader = fireside::Shader("res/shaders/matte-color-basic/matte-color_vertex.shader", "res/shaders/matte-color-basic/matte-color_fragment.shader");
+		shader = new fireside::Shader("res/shaders/matte-color-basic/matte-color_vertex.shader", "res/shaders/matte-color-basic/matte-color_fragment.shader");
 
 		fireside::Texture texture = fireside::Texture();
 		texture.CreateTexture("res/textures/dirt.jpg");
 
-		material = std::make_shared<fireside::Material>(fireside::Material(, texture));
+		material = std::make_shared<fireside::Material>(fireside::Material(shader));
+		material->AddUniform("u_color", u_Vec4, (void*)new glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
 		vao = std::make_shared<fireside::VertexArray>(fireside::VertexArray());
 		vao->Bind();
@@ -43,7 +45,7 @@ public:
 			0, 2, 3
 		};
 
-		eab = std::make_shared< fireside::ElementArrayBuffer>(fireside::ElementArrayBuffer(index, 6 * sizeof(unsigned int), 6));
+		eab = std::make_shared<fireside::ElementArrayBuffer>(fireside::ElementArrayBuffer(index, 6 * sizeof(unsigned int), 6));
 
 		vbo->Unbind();
 		vao->Unbind();
