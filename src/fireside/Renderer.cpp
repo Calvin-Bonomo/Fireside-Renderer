@@ -7,6 +7,11 @@ fireside::Renderer2D::~Renderer2D()
 	glfwTerminate();
 }
 
+void fireside::Renderer2D::LogError(int id, const char* description) 
+{
+	std::cout << "Error " << id << ": " << description << std::endl;
+}
+
 const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned int h, const char* title)
 {
 	// Set members
@@ -15,14 +20,30 @@ const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned i
 	m_WindowWidth = w;
 	m_WindowHeight = h;
 
-	// Initialize GLFW
-	if (!glfwInit())
-		return -1;
+	glfwSetErrorCallback(&LogError);
 
+	// Initialize GLFW
+	if (!glfwInit()) {
+		std::cout << "GLFW failed to initialize." << std::endl;
+		return -1;
+	}
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+
+#ifdef DEBUG
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+	std::cout << "Fireside Renderer is running in debug mode." << std::endl;
+#else
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#endif
+
+	
 	// Create a windowed mode window and its OpenGL context
 	m_Window = glfwCreateWindow(m_WindowWidth, m_WindowHeight, title, NULL, NULL);
 	if (!m_Window)
 	{
+		std::cout << "GLFW failed to to create a window." << std::endl;
 		glfwTerminate();
 		return -1;
 	}
@@ -32,7 +53,10 @@ const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned i
 
 	// Initialize GLEW
 	if (glewInit() != GLEW_OK)
+	{
+		std::cout << "GLEW failed to initialize." << std::endl;
 		return -1;
+	}
 
 	return 0; // Successful initialization
 }
@@ -54,18 +78,14 @@ void fireside::Renderer2D::Start(fireside::Application* app)
 }
 
 void fireside::Renderer2D::doRenderCall(fireside::RenderCall call, glm::mat4x4& camMat) 
-{
-	auto temp_va = call.vertexArray.lock();
-	auto temp_eab = call.elementBuffer.lock();
-	auto temp_material = call.material.lock();
+{	
+	call.vertexArray.Bind();
+	call.elementBuffer.Bind();
+	call.material.Bind();
 	
-	temp_va->Bind();
-	temp_eab->Bind();
-	temp_material->Bind();
-	
-	glDrawElements(GL_TRIANGLES, temp_eab->GetLength(), temp_eab->GetType(), nullptr);
+	glDrawElements(GL_TRIANGLES, call.elementBuffer.GetLength(), call.elementBuffer.GetType(), nullptr);
 
-	temp_material->Unbind();
-	temp_eab->Unbind();
-	temp_va->Unbind();
+	call.material.Unbind();
+	call.elementBuffer.Unbind();
+	call.vertexArray.Unbind();
 }

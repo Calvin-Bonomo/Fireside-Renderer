@@ -1,5 +1,7 @@
 #include "ElementArrayBuffer.h"
 
+#include <iostream>
+
 fireside::ElementArrayBuffer::ElementArrayBuffer(const void* data, GLsizeiptr size, unsigned int length) : m_ElementBufferLength(length), m_ElementType(0)
 {
 	switch (size/length)

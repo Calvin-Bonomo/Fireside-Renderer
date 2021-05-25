@@ -1,7 +1,8 @@
 #pragma once
 
-#include "GL/glew.h"
+#define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
+#include "GL/glew.h"
 
 #include "glm/glm.hpp"
 
@@ -22,10 +23,9 @@ namespace fireside {
 
 	struct RenderCall
 	{
-		std::weak_ptr<VertexArray> vertexArray;
-		std::weak_ptr<ElementArrayBuffer> elementBuffer;
-		std::weak_ptr<Material> material;
-		std::weak_ptr<glm::mat4x4> localMat;
+		VertexArray& vertexArray;
+		ElementArrayBuffer& elementBuffer;
+		Material& material;
 	};
 
 	class Renderer2D 
@@ -33,6 +33,8 @@ namespace fireside {
 	public:
 		Renderer2D() : m_Window(nullptr), m_WindowHeight(1), m_WindowWidth(1) { };
 		~Renderer2D();
+
+		static void LogError(int id, const char* description);
 
 		const unsigned int InitRenderer(unsigned int w, unsigned int h, const char* title);
 		void Start(fireside::Application* app);

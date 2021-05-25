@@ -15,11 +15,7 @@ void fireside::Material::Bind()
 	if (m_Shader != nullptr) m_Shader->Bind();
 	for (Uniform u : m_UniformList) 
 	{
-		if (u.type == u_Tex2D) 
-		{
-			Texture& tex = *(Texture*)u.value;
-			tex.Bind();
-		}
+		SetShaderUniform(u);
 	}
 }
 
@@ -58,8 +54,9 @@ void fireside::Material::SetShaderUniform(Uniform uniform)
 		case u_Mat4x4:
 			std::cerr << "Not yet implemented." << std::endl;
 			break;
-		default:
-			std::cerr << "Could not find uniform type " << uniform.type << "." << std::endl;
+		case u_Tex2D:
+			Texture& texture = *(Texture*)uniform.value;
+			texture.Bind();
 			break;
 	}
 }
