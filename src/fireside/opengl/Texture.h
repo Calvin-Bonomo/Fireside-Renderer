@@ -17,7 +17,9 @@ namespace fireside {
 		void Bind();
 		void Unbind();
 
-		void CreateTexture(const char* path);
+		void CreateTexture(int width, int height, GLenum colorFormat = GL_RGB);
+
+		void LoadTexture(const char* path);
 
 	private:
 		GLuint m_RendererID;

@@ -10,4 +10,5 @@ uniform sampler2D u_tex;
 void main()
 {
 	color = texture(u_tex, TexCoord);
+	color *= color.a;
 };

@@ -7,20 +7,18 @@ fireside::Renderer2D::~Renderer2D()
 	glfwTerminate();
 }
 
-void fireside::Renderer2D::LogError(int id, const char* description) 
+void fireside::Renderer2D::logError(int id, const char* description) 
 {
 	std::cout << "Error " << id << ": " << description << std::endl;
 }
 
-const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned int h, const char* title)
+const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned int h, const char* title, Camera &mainCamera)
 {
 	// Set members
-	m_IsActive = true;
-
 	m_WindowWidth = w;
 	m_WindowHeight = h;
 
-	glfwSetErrorCallback(&LogError);
+	glfwSetErrorCallback(&logError);
 
 	// Initialize GLFW
 	if (!glfwInit()) {
@@ -58,6 +56,8 @@ const unsigned int fireside::Renderer2D::InitRenderer(unsigned int w, unsigned i
 		return -1;
 	}
 
+	mainCamera.CreateCamera(m_WindowWidth, m_WindowHeight);
+
 	return 0; // Successful initialization
 }
 
@@ -77,8 +77,16 @@ void fireside::Renderer2D::Start(fireside::Application* app)
 	}
 }
 
-void fireside::Renderer2D::doRenderCall(fireside::RenderCall call, glm::mat4x4& camMat) 
-{	
+void fireside::Renderer2D::doRenderCall(fireside::RenderCall call, fireside::Camera& renderCamera) 
+{
+	auto M = call.transform.GetLocalTransform();
+	auto V = renderCamera.GetViewMatrix();
+	auto P = renderCamera.GetProjectionMatrix();
+
+	call.material.AddUniform("u_Model", u_Mat4, &M);
+	call.material.AddUniform("u_View", u_Mat4, &V);
+	call.material.AddUniform("u_Projection", u_Mat4, &P);
+
 	call.vertexArray.Bind();
 	call.elementBuffer.Bind();
 	call.material.Bind();

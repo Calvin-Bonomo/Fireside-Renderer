@@ -8,14 +8,14 @@
 #include "glm/glm.hpp"
 
 // Define uniform types for easy uniform setting
-#define UniformType unsigned int
-#define u_Float 0
-#define u_Integer 1
-#define u_Vec2 2
-#define u_Vec3 3
-#define u_Vec4 4
-#define u_Mat4x4 5
-#define u_Tex2D 6
+typedef unsigned int UniformType;
+const UniformType u_Float = 0;
+const UniformType u_Integer = 1;
+const UniformType u_Vec2 = 2;
+const UniformType u_Vec3 = 3;
+const UniformType u_Vec4 = 4;
+const UniformType u_Mat4 = 5;
+const UniformType u_Tex2D = 6;
 
 namespace fireside {
 	struct Uniform {
@@ -35,7 +35,7 @@ namespace fireside {
 		void Unbind();
 
 		void AddUniform(std::string name, UniformType type, const void* value) { m_UniformList.push_back({ name, type, value }); }
-
+	private:
 		void SetShaderUniform(Uniform uniform);
 
 	private:

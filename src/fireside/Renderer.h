@@ -12,6 +12,7 @@
 #include "ElementArrayBuffer.h"
 #include "VertexArray.h"
 #include "Material.h"
+#include "Camera.h"
 
 namespace fireside {
 
@@ -26,6 +27,7 @@ namespace fireside {
 		VertexArray& vertexArray;
 		ElementArrayBuffer& elementBuffer;
 		Material& material;
+		Transform& transform;
 	};
 
 	class Renderer2D 
@@ -34,17 +36,15 @@ namespace fireside {
 		Renderer2D() : m_Window(nullptr), m_WindowHeight(1), m_WindowWidth(1) { };
 		~Renderer2D();
 
-		static void LogError(int id, const char* description);
+		static void logError(int id, const char* description);
 
-		const unsigned int InitRenderer(unsigned int w, unsigned int h, const char* title);
+		const unsigned int InitRenderer(unsigned int w, unsigned int h, const char* title, Camera& mainCamera);
 		void Start(fireside::Application* app);
 
-		static void doRenderCall(RenderCall call, glm::mat4x4& camMat);
+		static void doRenderCall(RenderCall call, Camera& renderCamera);
 
-		inline GLFWwindow* getWindow() { return m_IsActive ? m_Window : nullptr; }
+		inline GLFWwindow* getWindow() { return m_Window; }
 	private:
-		bool m_IsActive = false;
-
 		GLFWwindow* m_Window;
 		unsigned int m_WindowWidth;
 		unsigned int m_WindowHeight;

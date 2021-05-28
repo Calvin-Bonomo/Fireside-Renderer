@@ -51,8 +51,8 @@ void fireside::Material::SetShaderUniform(Uniform uniform)
 		case u_Vec4:
 			m_Shader->SetUniform4fv(uniform.name, *(glm::vec4*)uniform.value);
 			break;
-		case u_Mat4x4:
-			std::cerr << "Not yet implemented." << std::endl;
+		case u_Mat4:
+			m_Shader->SetUniformMatrix4fv(uniform.name, *(glm::mat4*)uniform.value);
 			break;
 		case u_Tex2D:
 			Texture& texture = *(Texture*)uniform.value;

@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  Renderer.cpp
+C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\fireside\Renderer.cpp(59,41): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\fireside\Renderer.cpp(59,26): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  main.cpp
+  Generating Code...
   Fireside Renderer.vcxproj -> C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Debug\Fireside Renderer.exe

@@ -8,20 +8,28 @@ public:
 	fireside::ElementArrayBuffer* eab;
 	fireside::Material* material;
 	fireside::Shader* shader;
+	fireside::Texture* texture;
+	fireside::Camera* mainCam;
+	fireside::Transform* transform;
 
-	App() 
+	App()
 	{
+		transform = new fireside::Transform();
+		transform->SetScale(200, 200);
+
+		mainCam = new fireside::Camera();
 		fireside::Renderer2D renderer;
-		if (renderer.InitRenderer(400, 400, "Test") == -1)
+		if (renderer.InitRenderer(600, 600, "Test", *mainCam) == -1)
 			return;
 
-		shader = new fireside::Shader("res/shaders/matte-color-basic/matte-color_vertex.shader", "res/shaders/matte-color-basic/matte-color_fragment.shader");
+		shader = new fireside::Shader("res/shaders/texture-basic/texture_vertex.shader", "res/shaders/texture-basic/texture_fragment.shader");
 
-		fireside::Texture texture = fireside::Texture();
-		texture.CreateTexture("res/textures/dirt.jpg");
+		texture = new fireside::Texture();
+		texture->LoadTexture("res/textures/dirt.jpg");
 
 		material = new fireside::Material(shader);
-		material->AddUniform("u_color", u_Vec4, (void*)new glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		//material->AddUniform("u_color", u_Vec4, (void*)new glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		material->AddUniform("u_tex", u_Tex2D, (void*)texture);
 
 		vao = new fireside::VertexArray();
 		vao->Bind();
@@ -61,13 +69,14 @@ public:
 		delete vbo;
 		delete eab;
 		delete material;
+		delete texture;
+		delete mainCam;
+		delete transform;
 	}
 
 	unsigned int Render() override
 	{
-		glm::mat4x4* camMat = new glm::mat4x4();
-		fireside::Renderer2D::doRenderCall(fireside::RenderCall{*vao, *eab, *material}, *camMat);
-		delete camMat;
+		fireside::Renderer2D::doRenderCall(fireside::RenderCall{*vao, *eab, *material, *transform}, *mainCam);
 		return 1;
 	}
 };

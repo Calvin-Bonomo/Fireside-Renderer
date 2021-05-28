@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\fireside\Camera.h" />
     <ClInclude Include="src\fireside\Material.h" />
     <ClInclude Include="src\fireside\opengl\ElementArrayBuffer.h" />
     <ClInclude Include="src\fireside\Renderer.h" />
@@ -27,6 +28,8 @@
     <ClInclude Include="src\fireside\opengl\VertexArray.h" />
     <ClInclude Include="src\fireside\opengl\VertexBuffer.h" />
     <ClInclude Include="src\fireside\opengl\VertexLayout.h" />
+    <ClInclude Include="src\fireside\Sprite.h" />
+    <ClInclude Include="src\fireside\Transform.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\compute_vector_relational.hpp" />
@@ -312,8 +315,11 @@
     <ClInclude Include="vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\fireside\Camera.cpp" />
     <ClCompile Include="src\fireside\Material.cpp" />
     <ClCompile Include="src\fireside\opengl\ElementArrayBuffer.cpp" />
+    <ClCompile Include="src\fireside\Sprite.cpp" />
+    <ClCompile Include="src\fireside\Transform.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\fireside\Renderer.cpp" />
     <ClCompile Include="src\fireside\opengl\Shader.cpp" />
@@ -553,7 +559,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Fireside Renderer\src\fireside\opengl;$(SolutionDir)Fireside Renderer\vendor\stb;$(SolutionDir)Fireside Renderer\vendor\glm;$(SolutionDir)Dependecies\GLFW\include;$(SolutionDir)Dependecies\GLEW\include</AdditionalIncludeDirectories>
     </ClCompile>

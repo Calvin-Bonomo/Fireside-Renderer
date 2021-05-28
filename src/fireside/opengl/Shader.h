@@ -24,6 +24,7 @@ namespace fireside {
 
 		void SetUniform1f(std::string uniform, const GLfloat value);
 		void SetUniform4fv(std::string uniform, const glm::vec4 value);
+		void SetUniformMatrix4fv(std::string uniform, const glm::mat4 value);
 	private:
 		unsigned long GetFileLength(std::ifstream& fileStream);
 		std::string ReadFile(const char* filePath);

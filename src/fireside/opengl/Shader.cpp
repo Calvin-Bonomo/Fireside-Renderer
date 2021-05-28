@@ -100,6 +100,8 @@ void fireside::Shader::SetUniform1f(std::string uniform, const GLfloat value) { 
 
 void fireside::Shader::SetUniform4fv(std::string uniform, const glm::vec4 value) { glUniform4fv(GetUniformLocation(uniform), 1, glm::value_ptr(value)); }
 
+void fireside::Shader::SetUniformMatrix4fv(std::string uniform, const glm::mat4 value) { glUniformMatrix4fv(GetUniformLocation(uniform), 1, false, glm::value_ptr(value)); }
+
 GLint fireside::Shader::GetUniformLocation(std::string uniform) 
 {
 	if (m_UniformLocations.find(uniform) != m_UniformLocations.end())

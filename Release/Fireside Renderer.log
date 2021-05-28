@@ -1,0 +1,19 @@
+﻿  Material.cpp
+  ElementArrayBuffer.cpp
+  main.cpp
+  Renderer.cpp
+  Shader.cpp
+C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\fireside\opengl\Shader.cpp(39,20): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned long', possible loss of data
+C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\fireside\opengl\Shader.cpp(43,20): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned long', possible loss of data
+  Texture.cpp
+  VertexArray.cpp
+  VertexBuffer.cpp
+  glm.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Fireside Renderer\src\fireside\opengl\Shader.cpp(115): warning C4715: 'fireside::Shader::GetUniformLocation': not all control paths return a value
+  All 665 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Release\vc120.pdb'; linking object as if no debug info
+  Fireside Renderer.vcxproj -> C:\Users\Calvin Bonomo\source\repos\Fireside Renderer\Release\Fireside Renderer.exe
